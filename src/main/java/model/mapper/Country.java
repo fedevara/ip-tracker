@@ -19,4 +19,9 @@ public class Country {
     private List<Currency> currencies;
     private List<Language> languages;
 
+    private int invocations;
+
+    public void increaseInvocation() {
+        invocations++;
+    }
 }

@@ -12,12 +12,13 @@ public class SingletonCountries {
 
     private List<Country> countryList;
     private static SingletonCountries singleCountries;
+    private List<String> countryListInvocated;
 
-    private SingletonCountries(){
+    private SingletonCountries() {
 
         JsonArray jsonArray = JsonConverter.getJsonArray("https://restcountries.eu/rest/v2/all");
 
-        Gson gson= new Gson();
+        Gson gson = new Gson();
 
         countryList = new ArrayList<>();
         for (int i = 0; i < jsonArray.size(); i++) {
@@ -35,7 +36,7 @@ public class SingletonCountries {
 
     }
 
-    public Country find(String isoCode){
+    public Country find(String isoCode) {
 
         return countryList.stream()
                 .filter(country -> country.getAlpha2Code().equalsIgnoreCase(isoCode))
@@ -44,4 +45,20 @@ public class SingletonCountries {
 
     }
 
+    public void updateInvocations(String isoCode) {
+
+        countryList.stream()
+                .filter(country -> country.getAlpha2Code().equalsIgnoreCase(isoCode))
+                .findFirst()
+                .get().increaseInvocation();
+
+        if(countryListInvocated==null){
+            countryListInvocated = new ArrayList<>();
+        }
+
+        if(!countryListInvocated.contains(isoCode)){
+            countryListInvocated.add(isoCode);
+        }
+
+    }
 }

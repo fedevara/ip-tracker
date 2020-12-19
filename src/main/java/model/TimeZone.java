@@ -1,4 +1,4 @@
-package model.mapper;
+package model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class TimeZone {
 
-    private String localTime;
-    private String utcTime;
+    private String time;
     private String timeZone;
 
 }
