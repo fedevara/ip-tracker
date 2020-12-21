@@ -19,9 +19,6 @@ public class Country {
     private List<Currency> currencies;
     private List<Language> languages;
 
-    private int invocations;
+    private String distanceToBA;
 
-    public void increaseInvocation() {
-        invocations++;
-    }
 }

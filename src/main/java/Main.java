@@ -14,8 +14,8 @@ public class Main {
         init();
 
         Spark.port(8080);
-        Spark.get("/trackip/:ip", (request, response) -> trackIP(request, response));
-        Spark.get("/trackip/report", (request, response) -> report(request, response));
+        Spark.get("/trackip/search/:ip", (request, response) -> trackIP(request, response));
+        Spark.get("/trackip/report", (request, response) -> report(response));
 
     }
 
@@ -34,10 +34,12 @@ public class Main {
 
     }
 
-    private static Object report(Request request, Response response) {
+    private static Object report(Response response) {
 
-        //TODO
-        return null;
+        response.status(HttpStatus.OK_200);
+        response.header(HttpHeader.CONTENT_TYPE.toString(), MimeTypes.Type.APPLICATION_JSON_UTF_8.toString());
+
+        return ReportService.calculateDistanceInfo();
 
     }
 

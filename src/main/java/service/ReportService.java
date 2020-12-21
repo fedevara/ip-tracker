@@ -1,5 +1,6 @@
 package service;
 
+import model.StatisticResponse;
 import model.mapper.*;
 import model.IpInformationResponse;
 import com.google.gson.Gson;
@@ -7,11 +8,12 @@ import model.utils.Utils;
 
 public class ReportService {
 
+    private static final SingletonCountries singleCountries = SingletonCountries.getInstance();
+
     public static String retrieveIpInformation(String ip) {
 
         Ip2country ip2c = new Ip2country(ip);
-        Country countryIp = SingletonCountries.getInstance().find(ip2c.getCountryCode());
-        SingletonCountries.getInstance().updateInvocations(ip2c.getCountryCode());
+        Country countryIp = singleCountries.find(ip2c.getCountryCode());
 
         IpInformationResponse response = new IpInformationResponse();
 
@@ -28,10 +30,24 @@ public class ReportService {
 
         Position pos = new Position(countryIp.getLatlng().get(0), countryIp.getLatlng().get(1));
         response.setLatLong(pos);
-        response.setAverageDistance(Utils.calculateDistance(pos));
+        String distance = Utils.calculateDistance(pos);
+        response.setAverageDistance(distance);
+
+        singleCountries.updateInvocations(ip2c.getCountryCode(), distance);
 
         Gson gson = new Gson();
         return gson.toJson(response);
     }
 
+    public static String calculateDistanceInfo() {
+
+        StatisticResponse stResponse = new StatisticResponse();
+        stResponse.setLongestDistance(singleCountries.fillLongestCountryConsult());
+        stResponse.setShortestDistance(singleCountries.fillShortestCountryConsult());
+        stResponse.setAverageDistance(singleCountries.calculateAverageDistance());
+
+        Gson gson = new Gson();
+        return gson.toJson(stResponse);
+
+    }
 }
