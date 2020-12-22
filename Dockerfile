@@ -7,7 +7,7 @@ WORKDIR /app
 COPY --from=clone /app/ip-tracker /app
 RUN mvn install
 
-FROM openjdk:11-jre-alpine
+FROM openjdk:11-jre-slim
 WORKDIR /app
 COPY --from=build /app/target/IpTracker-1.0-SNAPSHOT.jar /app
 EXPOSE 3783
