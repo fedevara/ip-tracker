@@ -9,6 +9,6 @@ RUN mvn install
 
 FROM openjdk:11-jre-slim
 WORKDIR /app
-COPY --from=build /app/target/IpTracker-1.0-SNAPSHOT.jar /app
+COPY --from=build /app/target/IpTracker-1.0-SNAPSHOT-jar-with-dependencies.jar /app
 EXPOSE 3783
 CMD ["java", "-jar", "IpTracker-1.0-SNAPSHOT-jar-with-dependencies.jar"]
