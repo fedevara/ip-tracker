@@ -9,6 +9,6 @@ RUN mvn install
 
 FROM openjdk:8-jre-alpine
 WORKDIR /app
-COPY --from=build /app/target/IpTracker-1.0-SNAPSHOT-jar-with-dependencies.jar /app
+COPY --from=build /app/target/IpTracker-1.0-SNAPSHOT.jar /app
 EXPOSE 3783
-CMD ["java", "-jar", "IpTracker-1.0-SNAPSHOT-jar-with-dependencies.jar"]
+CMD ["java", "-jar", "IpTracker-1.0-SNAPSHOT.jar"]
