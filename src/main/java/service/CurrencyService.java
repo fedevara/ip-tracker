@@ -27,31 +27,20 @@ public class CurrencyService {
         try {
 
             CurrencyData cData;
-
             if (currencyCache.containsKey(localCurrency)) {
-
                 if (isValidCurrency(localCurrency)) {
-
                     cData = getCurrencyData(localCurrency);
-
                 } else {
-
                     cData = currencyCache.get(localCurrency);
-
                 }
-
             } else {
-
                 cData = getCurrencyData(localCurrency);
-
             }
 
             ret = cData.getRates().get("USD").divide(cData.getRates().get(localCurrency), 2, RoundingMode.DOWN).toString();
 
         } catch (ParseException e) {
-
             e.printStackTrace();
-
         }
 
         return ret;
