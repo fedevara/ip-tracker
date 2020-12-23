@@ -17,5 +17,6 @@ public class CurrencyData {
     private String base;
     private String date;
     private Map<String, BigDecimal> rates;
+    private String updatedDate;
 
 }

@@ -1,14 +1,10 @@
 package model.utils;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import model.CurrencyResponse;
 import model.TimeZone;
 import model.mapper.Currency;
-import model.mapper.CurrencyData;
 import model.mapper.Position;
-
-import java.math.RoundingMode;
+import service.CurrencyService;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -20,6 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Utils {
+
+    private static final CurrencyService currService = new CurrencyService();
 
     public static String getActualDate() {
 
@@ -49,11 +47,7 @@ public class Utils {
             return "1";
         }
 
-        JsonObject jsonObj = JsonConverter.getJson("http://data.fixer.io/api/latest?access_key=cea94c9892f047be8f51caa4d2e42e32&symbols=USD," + localCurrency + "&format=1");
-        Gson gson = new Gson();
-        CurrencyData cData = gson.fromJson(jsonObj.toString(), CurrencyData.class);
-
-        return cData.getRates().get("USD").divide(cData.getRates().get(localCurrency), 2, RoundingMode.DOWN).toString();
+        return currService.rateCurrency(localCurrency);
 
     }
 
@@ -67,7 +61,7 @@ public class Utils {
 
     private static TimeZone createTimeZone(String timeZone) {
 
-        return new TimeZone(timeZone, valorizeTimeZone(timeZone));
+        return new TimeZone(valorizeTimeZone(timeZone), timeZone);
 
     }
 

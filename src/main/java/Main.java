@@ -13,7 +13,7 @@ public class Main {
 
         init();
 
-        Spark.port(8080);
+        Spark.port(8079);
         Spark.get("/trackip/search/:ip", (request, response) -> trackIP(request, response));
         Spark.get("/trackip/report", (request, response) -> report(response));
 
@@ -27,10 +27,7 @@ public class Main {
 
     private static Object trackIP(Request request, Response response) {
 
-        response.status(HttpStatus.OK_200);
-        response.header(HttpHeader.CONTENT_TYPE.toString(), MimeTypes.Type.APPLICATION_JSON_UTF_8.toString());
-
-        return ReportService.retrieveIpInformation(request.params("ip"));
+        return ReportService.retrieveIpInformation(request, response);
 
     }
 
