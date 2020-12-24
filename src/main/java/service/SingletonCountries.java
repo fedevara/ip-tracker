@@ -143,10 +143,12 @@ public class SingletonCountries {
         String lDistCode = singleCountries.getLongestDistanceCode();
         Double lDistKilo = singleCountries.getLongestDistanceKilometers();
 
-        if (lDistCode != null && !lDistCode.equals("") && lDistKilo != null) {
+        if (!lDistCode.equals("")) {
             countryCons.setInvocations(singleCountries.getInvocations(lDistCode));
             countryCons.setCountryName(countryList.get(lDistCode).getName());
             countryCons.setCountryDistance(lDistKilo.toString());
+        } else {
+            return null;
         }
 
         return countryCons;
@@ -159,10 +161,12 @@ public class SingletonCountries {
         String sDistCode = singleCountries.getShortestDistanceCode();
         Double sDistKilo = singleCountries.getShortestDistanceKilometers();
 
-        if (sDistCode != null && !sDistCode.equals("") && sDistKilo != null) {
+        if (!sDistCode.equals("")) {
             countryCons.setInvocations(singleCountries.getInvocations(sDistCode));
             countryCons.setCountryName(countryList.get(sDistCode).getName());
             countryCons.setCountryDistance(sDistKilo.toString());
+        } else {
+            return null;
         }
 
         return countryCons;

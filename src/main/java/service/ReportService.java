@@ -39,9 +39,17 @@ public class ReportService {
 
     public static StatisticResponse calculateDistanceInfo() {
         StatisticResponse stResponse = new StatisticResponse();
-        stResponse.setLongestDistance(singleCountries.fillLongestCountryConsult());
-        stResponse.setShortestDistance(singleCountries.fillShortestCountryConsult());
-        stResponse.setAverageDistance(singleCountries.calculateAverageDistance());
-        return stResponse;
+
+        CountryConsult longDist = singleCountries.fillLongestCountryConsult();
+        CountryConsult shortDist = singleCountries.fillShortestCountryConsult();
+
+        if (longDist != null && shortDist != null) {
+            stResponse.setLongestDistance(longDist);
+            stResponse.setShortestDistance(shortDist);
+            stResponse.setAverageDistance(singleCountries.calculateAverageDistance());
+            return stResponse;
+        }
+
+        return null;
     }
 }

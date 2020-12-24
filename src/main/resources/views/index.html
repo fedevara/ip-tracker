@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>IP Tracker</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>IP Tracker</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container">
-		<div>
-			<a href="/trackip/report" class="btn btn-info" role="button">Reports</a>
-			<a href="#" class="btn btn-info" role="button">Track IP</a>
-		</div>
-		
-		<form class="form-horizontal" method="get" action="/trackip/search">
-			<div class="form-group">
-				<label class="control-label col-sm-2">IP:</label>
-				<div class="col-sm-10">
-					<input type="text" name="ip" id="ip" minlength="7" maxlength="15" size="15" placeholder="Ejemplo: 83.44.196.93" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" required>
-				</div>
-			</div>
-			<div class="form-group">        
-				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">Track ip</button>
-				</div>
-			</div>
-		</form>
-	</div>
+<div class="container customDiv">
+
+    <div class="customDiv button-group-table">
+        <div class="cell"><a href="/trackip/report" class="btn btn-info bt" role="button">Reports</a></div>
+        <div class="cell"><a href="#" class="btn btn-info bt" role="button">Track IP</a></div>
+    </div>
+
+    <form class="form-horizontal customDiv" method="get" action="/trackip/search">
+        <div class="form-group ">
+            <label class="control-label">IP:</label>
+            <input class="inputText" type="text" name="ip" id="ip" minlength="7" maxlength="15" size="15"
+                   placeholder="Ejemplo: 83.44.196.93"
+                   pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-default">Track ip</button>
+        </div>
+    </form>
+
+</div>
 </body>
 </html>
